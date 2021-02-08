@@ -5,8 +5,11 @@ import java.io.OutputStreamWriter;
 
 public class Main {
     static int k;
-    static String[] str;
+    static int depth;
     static int[] num;
+    static int[] seq;
+    static String[] str;
+    static boolean[] visited;
 
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -15,7 +18,14 @@ public class Main {
         k = Integer.parseInt(br.readLine());
         str = br.readLine().split(" ");
 
+        depth = 0;
+        seq = new int[k + 1];
+        visited = new boolean[k + 1];
         bw.write(max() + "\n");
+
+        depth = 0;
+        seq = new int[k + 1];
+        visited = new boolean[k + 1];
         bw.write(min() + "\n");
 
         bw.flush();
@@ -30,11 +40,7 @@ public class Main {
             num[i] = 9 - i;
         }
 
-        boolean[] visited = new boolean[k + 1];
-        int depth = 0;
-        int[] seq = new int[k + 1];
-
-        int[] result = permutation(visited, depth, seq);
+        int[] result = permutation();
 
         StringBuilder sb = new StringBuilder();
 
@@ -52,11 +58,7 @@ public class Main {
             num[i] = i;
         }
 
-        boolean[] visited = new boolean[k + 1];
-        int depth = 0;
-        int[] seq = new int[k + 1];
-
-        int[] result = permutation(visited, depth, seq);
+        int[] result = permutation();
 
         StringBuilder sb = new StringBuilder();
 
@@ -67,7 +69,7 @@ public class Main {
         return sb.toString();
     }
 
-    static int[] permutation(boolean[] visited, int depth, int[] seq) {
+    static int[] permutation() {
         if (depth == k + 1) {
             if (check(seq)) {
                 return seq;
@@ -80,7 +82,9 @@ public class Main {
             if (!visited[i]) {
                 seq[depth] = num[i];
                 visited[i] = true;
-                int[] result = permutation(visited, depth + 1, seq);
+                depth++;
+                int[] result = permutation();
+                depth--;
                 if (result != null) {
                     return result;
                 }
