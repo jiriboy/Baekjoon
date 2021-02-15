@@ -20,14 +20,11 @@ public class Main {
         N = Integer.parseInt(br.readLine());
         ability = new int[N][N];
 
-        int sum = 0;
-
         for (int i = 0; i < N; i++) {
             st = new StringTokenizer(br.readLine());
 
             for (int j = 0; j < N; j++) {
                 ability[i][j] = Integer.parseInt(st.nextToken());
-                sum += ability[i][j];
             }
         }
 
