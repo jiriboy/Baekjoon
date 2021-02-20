@@ -61,6 +61,5 @@ public class Main {
         }
 
         chars[map[x][y] - 'A'] = false;
-        count--;
     }
 }
