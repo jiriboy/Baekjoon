@@ -31,7 +31,7 @@ public class Main {
 
         int answer = 0;
 
-        plus.sort(Collections.reverseOrder());
+        Collections.sort(plus, Collections.reverseOrder());
         Collections.sort(minus);
 
         for (int i = 0; i < plus.size(); i++) {
